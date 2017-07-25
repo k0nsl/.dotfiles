@@ -16,7 +16,7 @@
  alias mv='mv -i'
 
  alias getmyip="curl -4 ifconfig.k0nsl.org"
- alias up='apt-get update && apt-get upgrade && apt-get autoremove -y && apt-get clean all
+ alias up='apt-get update && apt-get upgrade && apt-get autoremove -y && apt-get clean all'
  alias df='df -hT'
 
 get-docker-ip() {
