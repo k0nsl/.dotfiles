@@ -1,4 +1,4 @@
-# enable bash completion in interactive shells
+# Enable bash completion in interactive shells
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -7,11 +7,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
- # Aliases
  alias usage='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
  alias ls="ls -lah --color"
 
- # Some more alias to avoid making mistakes:
+# Some more alias to avoid making mistakes:
  alias rm='rm -i'
  alias cp='cp -i'
  alias mv='mv -i'
@@ -21,8 +20,6 @@ fi
  alias free='free -m -h'
  alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
  alias wanip6='curl -6 ifconfig.k0nsl.org'
-
-# Various useful functions
 
 get-docker-ip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
@@ -48,3 +45,14 @@ extract () {
        echo "'$1' is not a valid file!"
    fi
 }
+
+# Make history great again
+
+ export HISTFILESIZE=20000
+ export HISTSIZE=10000
+ shopt -s histappend
+ # Combine multiline commands into one in history
+ shopt -s cmdhist
+ # Ignore duplicates, ls without options and builtin commands
+ HISTCONTROL=ignoredups
+ export HISTIGNORE="&:ls:[bf]g:exit"
