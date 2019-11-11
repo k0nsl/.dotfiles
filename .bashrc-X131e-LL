@@ -14,36 +14,39 @@ fi
  alias rm='rm -i'
  alias cp='cp -i'
  alias mv='mv -i'
-
+# Various useful aliases
  alias up='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove -y && sudo apt-get clean all'
  alias df='df -hT'
  alias free='free -m -h'
  alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
  alias wanip6='curl -6 ifconfig.k0nsl.org'
 
+ alias RODOH='ssh -T secret@my.host -dAr'
+
 get-docker-ip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
 
-extract () {
-   if [ -f $1 ] ; then
-       case $1 in
-           *.tar.bz2)   tar xvjf $1    ;;
-           *.tar.gz)    tar xvzf $1    ;;
-           *.bz2)       bunzip2 $1     ;;
-           *.rar)       unrar x $1       ;;
-           *.gz)        gunzip $1      ;;
-           *.tar)       tar xvf $1     ;;
-           *.tbz2)      tar xvjf $1    ;;
-           *.tgz)       tar xvzf $1    ;;
-           *.zip)       unzip $1       ;;
-           *.Z)         uncompress $1  ;;
-           *.7z)        7z x $1        ;;
-           *)           echo "don't know how to extract '$1'..." ;;
-       esac
-   else
-       echo "'$1' is not a valid file!"
-   fi
+extract () { # extract files. Ignore files with improper extensions.
+    local x
+    ee() { # echo and execute
+        echo "$@"
+        $1 "$2"
+    }
+    for x in "$@"; do
+        [[ -f $x ]] || continue
+        case "$x" in
+            *.tar.bz2 | *.tbz2 )    ee "tar xvjf" "$x"  ;;
+            *.tar.gz | *.tgz ) ee "tar xvzf" "$x"   ;;
+            *.bz2 )             ee "bunzip2" "$x"   ;;
+            *.rar )             ee "unrar x" "$x"   ;;
+            *.gz )              ee "gunzip" "$x"    ;;
+            *.tar )             ee "tar xvf" "$x"   ;;
+            *.zip )             ee "unzip" "$x"     ;;
+            *.Z )               ee "uncompress" "$x" ;;
+            *.7z )              ee "7z x" "$x"      ;;
+        esac
+    done
 }
 
 # Make history great again
