@@ -78,3 +78,7 @@ __setprompt
  # Ignore duplicates, ls without options and builtin commands
  HISTCONTROL=ignoredups
  export HISTIGNORE="&:ls:[bf]g:exit"
+
+# Locale and editor
+export EDITOR=nano
+export BROWSER="firefox '%s' &"
