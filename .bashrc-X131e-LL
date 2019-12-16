@@ -20,7 +20,7 @@ fi
  alias cp='cp -i'
  alias mv='mv -i'
 # Various useful aliases
- alias up='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove -y && sudo apt-get clean all'
+ alias up='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove -y'
  alias df='df -hT'
  alias free='free -m -h'
  alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
