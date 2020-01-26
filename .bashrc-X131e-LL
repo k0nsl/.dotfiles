@@ -26,16 +26,17 @@ fi
  alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
  alias wanip6='curl -6 ifconfig.k0nsl.org'
  alias ipwatch='watch -tpcn 1 pygmentize -g /home/k0nsl01/tmp/ipaddress.txt'
+ alias burnusb='sudo /usr/local/bin/balena-etcher-electron'
 
- alias RODOH='ssh -T secret@my.host -dAr'
+ alias RODOH='ssh -T user@hostname screen -dAr'
 
 get-docker-ip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
 
-extract () { # extract files. Ignore files with improper extensions.
+extract () { # Extract files. Ignore files with improper extensions.
     local x
-    ee() { # echo and execute
+    ee() { # Echo and execute
         echo "$@"
         $1 "$2"
     }
@@ -80,16 +81,13 @@ __setprompt
  HISTCONTROL=ignoredups
  export HISTIGNORE="&:ls:[bf]g:exit"
 
-# Locale and editor
-export EDITOR=nano
+# Default editor & browser
+export VISUAL=nano
+export EDITOR="$VISUAL"
 export BROWSER="firefox '%s' &"
 
 # Colours for grep, egrep and zgrep
 export GREP_OPTIONS='--color=auto'
-
-# Default editor
-export VISUAL=nano
-export EDITOR="$VISUAL"
 
 if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x  -a "${SSH_TTY:-x}" != x ]
 then
@@ -99,5 +97,5 @@ STARTED_SCREEN=1 ; export STARTED_SCREEN
 sleep 1
 screen -U -RR && exit 0
 
-echo "Screen failed! continuing with normal bash startup"
+echo "Screen failed! Continuing with normal bash startup"
 fi
