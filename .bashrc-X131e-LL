@@ -88,6 +88,7 @@ export BROWSER="firefox '%s' &"
 
 # Colours for grep, egrep and zgrep
 export GREP_OPTIONS='--color=auto'
+unset GREP_OPTIONS
 
 if [ "$PS1" != "" -a "${STARTED_SCREEN:-x}" = x  -a "${SSH_TTY:-x}" != x ]
 then
@@ -99,3 +100,5 @@ screen -U -RR && exit 0
 
 echo "Screen failed! Continuing with normal bash startup"
 fi
+
+~/Documents/scripts/screenfetch-dev.sh
