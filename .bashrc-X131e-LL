@@ -101,4 +101,5 @@ screen -U -RR && exit 0
 echo "Screen failed! Continuing with normal bash startup"
 fi
 
-~/Documents/scripts/screenfetch-dev.sh
+# Fancy sysinfo greeter (ref.: https://bad.goy.su/screenfetch)
+/usr/local/sbin/screenfetch-dev
