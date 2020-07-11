@@ -102,7 +102,7 @@ screen -U -RR && exit 0
 echo "Screen failed! Continuing with normal bash startup"
 fi
 
-## Fancy system information greeter (ref.: https://bad.goy.su/neofetch)
+# Fancy system information greeter (ref.: https://bad.goy.su/neofetch)
 /usr/bin/neofetch
 
 # Mount my Google Drive
