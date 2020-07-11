@@ -15,11 +15,11 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls -lah --color=auto'
 fi
 
-# Some more alias to avoid making mistakes:
+ # Some more alias to avoid making mistakes:
  alias rm='rm -i'
  alias cp='cp -i'
  alias mv='mv -i'
-# Various useful aliases
+ # Various useful aliases
  alias up='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove -y'
  alias df='df -hT'
  alias free='free -m -h'
@@ -27,6 +27,7 @@ fi
  alias wanip6='curl -6 ifconfig.k0nsl.org'
  alias ipwatch='watch -tpcn 1 pygmentize -g /home/k0nsl01/tmp/ipaddress.txt'
  alias burnusb='sudo /usr/local/bin/balena-etcher-electron'
+ alias kernel-update='sudo /usr/local/bin/ubuntu-mainline-kernel.sh'
 
  alias RODOH='ssh -T user@hostname screen -dAr'
 
@@ -82,7 +83,7 @@ __setprompt
  export HISTIGNORE="&:ls:[bf]g:exit"
 
 # Default editor & browser
-export VISUAL=nano
+export VISUAL=micro
 export EDITOR="$VISUAL"
 export BROWSER="firefox '%s' &"
 
@@ -101,5 +102,8 @@ screen -U -RR && exit 0
 echo "Screen failed! Continuing with normal bash startup"
 fi
 
-# Fancy sysinfo greeter (ref.: https://bad.goy.su/screenfetch)
-/usr/local/sbin/screenfetch-dev
+## Fancy system information greeter (ref.: https://bad.goy.su/neofetch)
+/usr/bin/neofetch
+
+# Mount my Google Drive
+/bin/bash /home/k0nsl01/Documents/scripts/mount-googledrive.sh
