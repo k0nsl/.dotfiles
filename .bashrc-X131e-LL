@@ -20,14 +20,19 @@ fi
  alias cp='cp -i'
  alias mv='mv -i'
  # Various useful aliases
- alias up='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove -y'
  alias df='df -hT'
  alias free='free -m -h'
  alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
  alias wanip6='curl -6 ifconfig.k0nsl.org'
  alias ipwatch='watch -tpcn 1 pygmentize -g /home/k0nsl01/tmp/ipaddress.txt'
  alias burnusb='sudo /usr/local/bin/balena-etcher-electron'
+ 
+ if [ -f "/etc/arch-release" ]; then
+ alias up='sudo pacman --sync --refresh; sudo pacman --sync --needed archlinux-keyring manjaro-keyring; sudo pacman --sync --sysupgrade'
+ else
+ alias up='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove -y'
  alias kernel-update='sudo /usr/local/bin/ubuntu-mainline-kernel.sh'
+ fi
 
  alias RODOH='ssh -T user@hostname screen -dAr'
 
